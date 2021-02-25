@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ingame_keybinder.gd" type="Script" id=1]
+[ext_resource path="res://bindit.gd" type="Script" id=2]
+
+[node name="keybinder_test" type="Node2D"]
+
+[node name="show key binder" type="Button" parent="."]
+margin_left = 39.0
+margin_top = 117.0
+margin_right = 114.0
+margin_bottom = 137.0
+text = "keybinder"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="keybinder" type="Popup" parent="."]
+visible = true
+margin_left = 162.566
+margin_top = 15.7322
+margin_right = 418.566
+margin_bottom = 271.732
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+actions = [ "pop", "paf", "kill", "gfd", "ret", "ggg", "poi", "aser", "qazzz", "iii", "ooo", "ttt", "eee", "sss", "aaaaa", "h" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="keybinder"]
+margin_top = -4.0
+margin_bottom = -4.0
+
+[node name="action_binder" type="Node2D" parent="keybinder/VBoxContainer"]
+position = Vector2( 56.1865, -50.9424 )
+scale = Vector2( 1.2, 1.2 )
+
+[node name="action_name" type="Label" parent="keybinder/VBoxContainer/action_binder"]
+margin_left = -16.4814
+margin_top = 1.49831
+margin_right = 47.5186
+margin_bottom = 25.4983
+custom_colors/font_color = Color( 0.85098, 0.85098, 0.85098, 1 )
+text = "None"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bindit" type="Button" parent="keybinder/VBoxContainer/action_binder"]
+margin_left = 58.6707
+margin_top = -0.987534
+margin_right = 126.671
+margin_bottom = 23.0125
+text = "unbound"
+flat = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="action_binds" type="Node2D" parent="keybinder/VBoxContainer"]
+[connection signal="pressed" from="show key binder" to="keybinder" method="_on_Button_pressed"]
+[connection signal="action_bind" from="keybinder/VBoxContainer/action_binder/bindit" to="keybinder" method="_on_bindit_action_bind"]
+[connection signal="pressed" from="keybinder/VBoxContainer/action_binder/bindit" to="keybinder/VBoxContainer/action_binder/bindit" method="_on_bindit_pressed"]
